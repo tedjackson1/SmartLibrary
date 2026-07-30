@@ -1,0 +1,157 @@
+﻿@model LMSystem.Models.DashboardModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                System Overview
+            </p>
+
+            <h2 class="page-title">
+                Library Dashboard
+            </h2>
+
+            <p class="page-description">
+                View the total number of students, books, librarians,
+                borrowings and publications available in the library system.
+            </p>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="dashboardStatisticsTitle">
+        <div class="section-header">
+            <div>
+                <h3 id="dashboardStatisticsTitle"
+                    class="section-title">
+                    Library Statistics
+                </h3>
+
+                <p class="section-description">
+                    A summary of the records currently managed by the system.
+                </p>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <div>
+                        <p class="stat-card-label">
+                            Total Students
+                        </p>
+
+                        <p class="stat-card-value">
+                            @Model.TotalStudents
+                        </p>
+                    </div>
+
+                    <span class="stat-card-icon primary"
+                          aria-hidden="true">
+                        <i class="bi bi-mortarboard"></i>
+                    </span>
+                </div>
+
+                <div class="stat-card-footer">
+                    Registered student records
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <div>
+                        <p class="stat-card-label">
+                            Total Books
+                        </p>
+
+                        <p class="stat-card-value">
+                            @Model.TotalBooks
+                        </p>
+                    </div>
+
+                    <span class="stat-card-icon success"
+                          aria-hidden="true">
+                        <i class="bi bi-journal-bookmark"></i>
+                    </span>
+                </div>
+
+                <div class="stat-card-footer">
+                    Books available in the catalogue
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <div>
+                        <p class="stat-card-label">
+                            Total Librarians
+                        </p>
+
+                        <p class="stat-card-value">
+                            @Model.TotalLibrarians
+                        </p>
+                    </div>
+
+                    <span class="stat-card-icon info"
+                          aria-hidden="true">
+                        <i class="bi bi-person-workspace"></i>
+                    </span>
+                </div>
+
+                <div class="stat-card-footer">
+                    Registered librarian records
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <div>
+                        <p class="stat-card-label">
+                            Total Borrowings
+                        </p>
+
+                        <p class="stat-card-value">
+                            @Model.TotalBorrowings
+                        </p>
+                    </div>
+
+                    <span class="stat-card-icon warning"
+                          aria-hidden="true">
+                        <i class="bi bi-arrow-left-right"></i>
+                    </span>
+                </div>
+
+                <div class="stat-card-footer">
+                    Recorded borrowing transactions
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-card-top">
+                    <div>
+                        <p class="stat-card-label">
+                            Total Publications
+                        </p>
+
+                        <p class="stat-card-value">
+                            @Model.TotalPublications
+                        </p>
+                    </div>
+
+                    <span class="stat-card-icon secondary"
+                          aria-hidden="true">
+                        <i class="bi bi-newspaper"></i>
+                    </span>
+                </div>
+
+                <div class="stat-card-footer">
+                    Magazine and newspaper records
+                </div>
+            </article>
+        </div>
+    </section>
+</div>

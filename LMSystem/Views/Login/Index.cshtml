@@ -1,0 +1,207 @@
+﻿@model LMSystem.Models.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="auth-page">
+    <div class="auth-container">
+        <section class="auth-visual"
+                 aria-label="Library Management System">
+            <div class="auth-visual-content">
+                <div class="auth-logo">
+                    <span class="auth-logo-icon"
+                          aria-hidden="true">
+                        <i class="bi bi-book-half"></i>
+                    </span>
+
+                    <span>
+                        <strong>
+                            LibSphere
+                        </strong>
+
+                        <small>
+                            Library Management System
+                        </small>
+                    </span>
+                </div>
+            </div>
+
+            <div class="auth-visual-copy">
+                <h2>
+                    Manage your library from one organised workspace.
+                </h2>
+
+                <p>
+                    Sign in to access the library dashboard and manage
+                    books, students, librarians, borrowings and publications.
+                </p>
+            </div>
+
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <i class="bi bi-journal-bookmark"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Book catalogue management
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-people"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Student and librarian records
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-arrow-left-right"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Borrowing and return workflow
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-newspaper"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Publication management
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-form-panel"
+                 aria-labelledby="loginPageTitle">
+            <div class="auth-form-header">
+                <p class="page-eyebrow">
+                    Account Access
+                </p>
+
+                <h1 id="loginPageTitle">
+                    Library Management Login
+                </h1>
+
+                <p>
+                    Enter your username and password to continue.
+                </p>
+            </div>
+
+            @if (ViewBag.message != null)
+            {
+                <div class="custom-alert custom-alert-danger"
+                     role="alert">
+                    <span class="custom-alert-icon"
+                          aria-hidden="true">
+                        <i class="bi bi-exclamation-octagon-fill"></i>
+                    </span>
+
+                    <div class="custom-alert-content">
+                        <strong>
+                            Login Failed
+                        </strong>
+
+                        <p>
+                            @ViewBag.message
+                        </p>
+                    </div>
+                </div>
+            }
+
+            <form asp-action="Verify"
+                  asp-controller="Login"
+                  method="post">
+                <div asp-validation-summary="ModelOnly"
+                     class="validation-summary-errors"></div>
+
+                <div class="mb-4">
+                    <label asp-for="username"
+                           class="form-label">
+                        Username / Email
+                    </label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-person input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="username"
+                               class="form-control"
+                               placeholder="Enter username"
+                               autocomplete="username"
+                               autofocus />
+                    </div>
+
+                    <span asp-validation-for="username"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="password"
+                           class="form-label">
+                        Password
+                    </label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-lock input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="password"
+                               id="password"
+                               type="password"
+                               class="form-control pe-5"
+                               placeholder="Enter password"
+                               autocomplete="current-password" />
+
+                        <button type="button"
+                                class="password-toggle-button"
+                                data-password-toggle
+                                data-password-target="password"
+                                aria-label="Show password"
+                                title="Show password">
+                            <i class="bi bi-eye"
+                               aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <span asp-validation-for="password"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-4">
+                    <input id="remember-me"
+                           name="remember-me"
+                           type="checkbox"
+                           class="form-check-input" />
+
+                    <label for="remember-me"
+                           class="form-check-label">
+                        Remember me
+                    </label>
+                </div>
+
+                <button type="submit"
+                        class="btn btn-primary btn-lg w-100">
+                    <i class="bi bi-box-arrow-in-right"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Login
+                    </span>
+                </button>
+            </form>
+
+            <div class="auth-form-footer">
+                <i class="bi bi-shield-lock me-1"
+                   aria-hidden="true"></i>
+
+                Library Management System secure access
+            </div>
+        </section>
+    </div>
+</div>

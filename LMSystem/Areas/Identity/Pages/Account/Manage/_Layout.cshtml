@@ -1,0 +1,73 @@
+@{
+    if (
+        ViewData.TryGetValue(
+            "ParentLayout",
+            out var parentLayout
+        ) &&
+        parentLayout != null
+    )
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Views/Shared/_Layout.cshtml";
+    }
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Account Management
+            </p>
+
+            <h1 class="page-title">
+                Manage your account
+            </h1>
+
+            <p class="page-description">
+                Review and update your profile, email, password,
+                authentication settings and personal data.
+            </p>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="accountSettingsTitle">
+        <div class="section-header">
+            <div>
+                <h2 id="accountSettingsTitle"
+                    class="section-title">
+                    Change your account settings
+                </h2>
+
+                <p class="section-description">
+                    Choose a section from the account navigation menu.
+                </p>
+            </div>
+        </div>
+
+        <div class="manage-layout">
+            <aside class="manage-sidebar"
+                   aria-label="Account settings navigation">
+                <div class="manage-sidebar-title">
+                    Account Navigation
+                </div>
+
+                <partial name="_ManageNav" />
+            </aside>
+
+            <main class="manage-content">
+                @RenderBody()
+            </main>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    @RenderSection(
+        "Scripts",
+        required: false
+    )
+}

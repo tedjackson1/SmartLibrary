@@ -1,0 +1,97 @@
+﻿@model ErrorViewModel
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="status-page" aria-labelledby="errorPageTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon danger"
+             aria-hidden="true">
+            <i class="bi bi-exclamation-octagon"></i>
+        </div>
+
+        <div class="status-code">
+            Application Error
+        </div>
+
+        <h1 id="errorPageTitle">
+            Something went wrong
+        </h1>
+
+        <p>
+            An error occurred while processing your request.
+        </p>
+
+        @if (Model.ShowRequestId)
+        {
+            <div class="error-request-information">
+                <span class="error-request-icon">
+                    <i class="bi bi-fingerprint"></i>
+                </span>
+
+                <div class="error-request-content">
+                    <span class="error-request-label">
+                        Request ID
+                    </span>
+
+                    <code class="error-request-value">
+                        @Model.RequestId
+                    </code>
+                </div>
+            </div>
+        }
+
+        <div class="error-development-panel">
+            <div class="error-development-header">
+                <span class="error-development-icon">
+                    <i class="bi bi-code-slash"></i>
+                </span>
+
+                <div>
+                    <h2>
+                        Development Mode
+                    </h2>
+
+                    <p>
+                        Information for local application debugging
+                    </p>
+                </div>
+            </div>
+
+            <div class="error-development-content">
+                <p>
+                    Swapping to the
+                    <strong>Development</strong>
+                    environment will display more detailed information
+                    about the error that occurred.
+                </p>
+
+                <div class="error-security-notice">
+                    <i class="bi bi-shield-exclamation"
+                       aria-hidden="true"></i>
+
+                    <p>
+                        <strong>
+                            The Development environment should not be
+                            enabled for deployed applications.
+                        </strong>
+
+                        It can result in displaying sensitive information
+                        from exceptions to end users.
+                    </p>
+                </div>
+
+                <p>
+                    For local debugging, enable the
+                    <strong>Development</strong>
+                    environment by setting the
+                    <code>ASPNETCORE_ENVIRONMENT</code>
+                    environment variable to
+                    <strong>Development</strong>
+                    and restarting the app.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

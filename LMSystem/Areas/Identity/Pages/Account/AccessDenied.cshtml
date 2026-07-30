@@ -1,0 +1,28 @@
+@page
+@model AccessDeniedModel
+
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<section class="status-page"
+         aria-labelledby="accessDeniedTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon danger"
+             aria-hidden="true">
+            <i class="bi bi-shield-lock"></i>
+        </div>
+
+        <div class="status-code">
+            Restricted Resource
+        </div>
+
+        <h1 id="accessDeniedTitle">
+            @ViewData["Title"]
+        </h1>
+
+        <p class="text-danger">
+            You do not have access to this resource.
+        </p>
+    </div>
+</section>

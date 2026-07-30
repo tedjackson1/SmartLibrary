@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Book Already Returned";
+
+    var errorMessage =
+        TempData["ErrorMessage"] as string;
+}
+
+<section class="status-page"
+         aria-labelledby="alreadyReturnedPageTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon info"
+             aria-hidden="true">
+            <i class="bi bi-arrow-counterclockwise"></i>
+        </div>
+
+        <div class="status-code">
+            Return Already Completed
+        </div>
+
+        <h1 id="alreadyReturnedPageTitle">
+            Book Already Returned
+        </h1>
+
+        <p>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                @errorMessage
+            }
+            else
+            {
+                <text>
+                    The borrow record for this book has already been returned.
+                </text>
+            }
+        </p>
+
+        <div class="status-information-box">
+            <i class="bi bi-info-circle"
+               aria-hidden="true"></i>
+
+            <span>
+                No additional return action is required for this book.
+            </span>
+        </div>
+
+        <div class="status-page-actions">
+            <a asp-action="Index"
+               asp-controller="Books"
+               class="btn btn-primary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Book List
+                </span>
+            </a>
+        </div>
+    </div>
+</section>

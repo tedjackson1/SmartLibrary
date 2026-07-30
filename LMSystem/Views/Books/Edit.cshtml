@@ -1,0 +1,228 @@
+﻿@model LMSystem.Models.Book
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Book Catalogue
+            </p>
+
+            <h2 class="page-title">
+                Edit Book
+            </h2>
+
+            <p class="page-description">
+                Update the catalogue information for this book while keeping
+                its existing record and availability information unchanged.
+            </p>
+        </div>
+
+        <div class="page-header-actions">
+            <a asp-action="Index"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Books
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="editBookFormTitle">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-9">
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div>
+                            <h3 id="editBookFormTitle"
+                                class="section-title">
+                                <i class="bi bi-pencil-square me-2"
+                                   aria-hidden="true"></i>
+
+                                Book Information
+                            </h3>
+
+                            <p class="section-description">
+                                Edit the existing details and save your changes.
+                            </p>
+                        </div>
+
+                        <span class="type-badge">
+                            <i class="bi bi-hash"
+                               aria-hidden="true"></i>
+
+                            Book ID: @Model.BookId
+                        </span>
+                    </div>
+
+                    <div class="app-card-body">
+                        <form asp-action="Edit"
+                              asp-controller="Books"
+                              method="post"
+                              class="needs-validation"
+                              novalidate>
+                            <div asp-validation-summary="All"
+                                 class="validation-summary-errors"></div>
+
+                            <input type="hidden"
+                                   asp-for="BookId" />
+
+                            <div class="form-section">
+                                <div class="row g-4">
+                                    <div class="col-12">
+                                        <div>
+                                            <label asp-for="Title"
+                                                   class="form-label">
+                                                Title
+
+                                                <span class="required-mark"
+                                                      aria-hidden="true">
+                                                    *
+                                                </span>
+                                            </label>
+
+                                            <div class="input-icon-wrapper">
+                                                <i class="bi bi-book input-icon"
+                                                   aria-hidden="true"></i>
+
+                                                <input asp-for="Title"
+                                                       class="form-control"
+                                                       placeholder="Enter book title"
+                                                       autofocus />
+                                            </div>
+
+                                            <span asp-validation-for="Title"
+                                                  class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <div>
+                                            <label asp-for="Author"
+                                                   class="form-label">
+                                                Author
+
+                                                <span class="required-mark"
+                                                      aria-hidden="true">
+                                                    *
+                                                </span>
+                                            </label>
+
+                                            <div class="input-icon-wrapper">
+                                                <i class="bi bi-person input-icon"
+                                                   aria-hidden="true"></i>
+
+                                                <input asp-for="Author"
+                                                       class="form-control"
+                                                       placeholder="Enter author's name" />
+                                            </div>
+
+                                            <span asp-validation-for="Author"
+                                                  class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <div>
+                                            <label asp-for="ISBN"
+                                                   class="form-label">
+                                                ISBN
+
+                                                <span class="required-mark"
+                                                      aria-hidden="true">
+                                                    *
+                                                </span>
+                                            </label>
+
+                                            <div class="input-icon-wrapper">
+                                                <i class="bi bi-upc-scan input-icon"
+                                                   aria-hidden="true"></i>
+
+                                                <input asp-for="ISBN"
+                                                       class="form-control"
+                                                       placeholder="e.g., 978-1234567890" />
+                                            </div>
+
+                                            <span asp-validation-for="ISBN"
+                                                  class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div>
+                                            <label asp-for="PublishedDate"
+                                                   class="form-label">
+                                                Published Date
+
+                                                <span class="required-mark"
+                                                      aria-hidden="true">
+                                                    *
+                                                </span>
+                                            </label>
+
+                                            <div class="input-icon-wrapper">
+                                                <i class="bi bi-calendar3 input-icon"
+                                                   aria-hidden="true"></i>
+
+                                                <input asp-for="PublishedDate"
+                                                       class="form-control"
+                                                       type="date" />
+                                            </div>
+
+                                            <span asp-validation-for="PublishedDate"
+                                                  class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit"
+                                        class="btn btn-primary">
+                                    <i class="bi bi-check-circle"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        Save Changes
+                                    </span>
+                                </button>
+
+                                <a asp-action="Details"
+                                   asp-route-id="@Model.BookId"
+                                   class="btn btn-outline-primary">
+                                    <i class="bi bi-eye"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        View Details
+                                    </span>
+                                </a>
+
+                                <a asp-action="Index"
+                                   class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        Cancel
+                                    </span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

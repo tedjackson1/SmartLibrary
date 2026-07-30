@@ -1,0 +1,182 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="page-container">
+    <!-- Featured Books Section -->
+    <section class="page-section"
+             aria-labelledby="featuredBooksTitle">
+        <header class="page-header">
+            <div class="page-header-content">
+                <h2 id="featuredBooksTitle"
+                    class="page-title">
+                    Featured Books
+                </h2>
+            </div>
+        </header>
+
+        <div class="row g-4">
+            <!-- The Hobbit -->
+            <div class="col-12 col-md-6 col-xl-4">
+                <article class="book-card h-100 d-flex flex-column">
+                    <div class="book-card-image-wrapper">
+                        <img src="/images/hobbit.png"
+                             class="book-card-image"
+                             alt="The Hobbit" />
+                    </div>
+
+                    <div class="book-card-body d-flex flex-column flex-grow-1">
+                        <h3 class="book-card-title">
+                            The Hobbit
+                        </h3>
+
+                        <p class="book-card-description">
+                            A hobbit named Bilbo embarks on an unexpected
+                            journey with dwarves to reclaim their homeland
+                            from a dragon.
+                        </p>
+
+                        <div class="book-card-footer mt-auto">
+                            <a href="/Books/Details/1"
+                               class="btn btn-primary">
+                                <i class="bi bi-eye"
+                                   aria-hidden="true"></i>
+
+                                <span>
+                                    View Details
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- War and Peace -->
+            <div class="col-12 col-md-6 col-xl-4">
+                <article class="book-card h-100 d-flex flex-column">
+                    <div class="book-card-image-wrapper">
+                        <img src="/images/warpeace.png"
+                             class="book-card-image"
+                             alt="War and Peace" />
+                    </div>
+
+                    <div class="book-card-body d-flex flex-column flex-grow-1">
+                        <h3 class="book-card-title">
+                            War and Peace
+                        </h3>
+
+                        <p class="book-card-description">
+                            In 'War and Peace,' Leo Tolstoy explores the
+                            impact of the Napoleonic Wars on Russian
+                            aristocratic families, interweaving personal
+                            dramas with historical events, highlighting
+                            themes of love, fate, and resilience in a
+                            tumultuous era.
+                        </p>
+
+                        <div class="book-card-footer mt-auto">
+                            <a href="/Books/Details/3"
+                               class="btn btn-primary">
+                                <i class="bi bi-eye"
+                                   aria-hidden="true"></i>
+
+                                <span>
+                                    View Details
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Purple Hearts -->
+            <div class="col-12 col-md-6 col-xl-4">
+                <article class="book-card h-100 d-flex flex-column">
+                    <div class="book-card-image-wrapper">
+                        <img src="/images/purple.png"
+                             class="book-card-image"
+                             alt="Purple Hearts" />
+                    </div>
+
+                    <div class="book-card-body d-flex flex-column flex-grow-1">
+                        <h3 class="book-card-title">
+                            Purple Hearts
+                        </h3>
+
+                        <p class="book-card-description">
+                            Purple Hearts follows a sergeant and a soldier
+                            who are thrown together in the midst of war.
+                            Despite their contrasting backgrounds and the
+                            challenges they face, their relationship evolves,
+                            leading to a story of personal growth and
+                            connection.
+                        </p>
+
+                        <div class="book-card-footer mt-auto">
+                            <a href="/Books/Details/3"
+                               class="btn btn-primary">
+                                <i class="bi bi-eye"
+                                   aria-hidden="true"></i>
+
+                                <span>
+                                    View Details
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section class="page-section"
+             aria-labelledby="libraryAnnouncementsTitle">
+        <div class="section-header">
+            <div>
+                <h2 id="libraryAnnouncementsTitle"
+                    class="section-title">
+                    Library Announcements
+                </h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-6">
+                <article class="information-card h-100">
+                    <div class="information-card-icon"
+                         aria-hidden="true">
+                        <i class="bi bi-bookmark-star"></i>
+                    </div>
+
+                    <h3>
+                        New Arrivals
+                    </h3>
+
+                    <p>
+                        <strong>New Arrivals:</strong>
+                        Check out the latest books added to our collection!
+                    </p>
+                </article>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <article class="information-card h-100">
+                    <div class="information-card-icon"
+                         aria-hidden="true">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+
+                    <h3>
+                        Library Hours Update
+                    </h3>
+
+                    <p>
+                        <strong>Library Hours Update:</strong>
+                        The library will be closed on public holidays.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>

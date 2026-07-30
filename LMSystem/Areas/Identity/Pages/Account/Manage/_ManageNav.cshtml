@@ -1,0 +1,92 @@
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    var hasExternalLogins =
+        (await SignInManager
+            .GetExternalAuthenticationSchemesAsync())
+            .Any();
+}
+
+<ul class="nav nav-pills flex-column manage-nav">
+    <li class="nav-item">
+        <a id="profile"
+           class="nav-link @ManageNavPages.IndexNavClass(ViewContext)"
+           asp-page="./Index">
+            <i class="bi bi-person-circle"
+               aria-hidden="true"></i>
+
+            <span>
+                Profile
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a id="email"
+           class="nav-link @ManageNavPages.EmailNavClass(ViewContext)"
+           asp-page="./Email">
+            <i class="bi bi-envelope"
+               aria-hidden="true"></i>
+
+            <span>
+                Email
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a id="change-password"
+           class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)"
+           asp-page="./ChangePassword">
+            <i class="bi bi-key"
+               aria-hidden="true"></i>
+
+            <span>
+                Password
+            </span>
+        </a>
+    </li>
+
+    @if (hasExternalLogins)
+    {
+        <li id="external-logins"
+            class="nav-item">
+            <a id="external-login"
+               class="nav-link @ManageNavPages.ExternalLoginsNavClass(ViewContext)"
+               asp-page="./ExternalLogins">
+                <i class="bi bi-box-arrow-in-up-right"
+                   aria-hidden="true"></i>
+
+                <span>
+                    External logins
+                </span>
+            </a>
+        </li>
+    }
+
+    <li class="nav-item">
+        <a id="two-factor"
+           class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"
+           asp-page="./TwoFactorAuthentication">
+            <i class="bi bi-shield-lock"
+               aria-hidden="true"></i>
+
+            <span>
+                Two-factor authentication
+            </span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a id="personal-data"
+           class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)"
+           asp-page="./PersonalData">
+            <i class="bi bi-database-lock"
+               aria-hidden="true"></i>
+
+            <span>
+                Personal data
+            </span>
+        </a>
+    </li>
+</ul>

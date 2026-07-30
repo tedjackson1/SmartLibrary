@@ -1,0 +1,242 @@
+﻿@model IEnumerable<LMSystem.Models.Publication>
+
+@{
+    ViewData["Title"] = "Publications";
+
+    string currentType =
+        ViewData["CurrentType"]?.ToString() ?? "Publication";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Publication Management
+            </p>
+
+            <h2 class="page-title">
+                Publications
+            </h2>
+
+            <p class="page-description">
+                View and manage the magazine and newspaper records stored
+                in the library system.
+            </p>
+        </div>
+
+        <div class="page-header-actions">
+            <a asp-action="Create"
+               class="btn btn-primary">
+                <i class="bi bi-plus-lg"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Create New
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="publicationRecordsTitle">
+        <div class="section-header">
+            <div>
+                <h3 id="publicationRecordsTitle"
+                    class="section-title">
+                    Publication Records
+                </h3>
+
+                <p class="section-description">
+                    Currently viewing @currentType records.
+                </p>
+            </div>
+
+            <span class="type-badge">
+                @if (
+                    currentType.Equals(
+                        "Magazine",
+                        StringComparison.OrdinalIgnoreCase
+                    )
+                )
+                {
+                    <i class="bi bi-journals"
+                       aria-hidden="true"></i>
+                }
+                else
+                {
+                    <i class="bi bi-newspaper"
+                       aria-hidden="true"></i>
+                }
+
+                @currentType
+            </span>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-card">
+                <div class="table-responsive">
+                    <table class="app-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    Title
+                                </th>
+
+                                <th scope="col">
+                                    Type
+                                </th>
+
+                                <th scope="col">
+                                    Publisher
+                                </th>
+
+                                <th scope="col"
+                                    class="text-end">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="table-cell-with-icon">
+                                            <span class="table-avatar"
+                                                  aria-hidden="true">
+                                                @if (
+                                                    item.Type ==
+                                                    LMSystem.Models.PublicationType.Magazine
+                                                )
+                                                {
+                                                    <i class="bi bi-journals"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="bi bi-newspaper"></i>
+                                                }
+                                            </span>
+
+                                            <div class="table-cell-stack">
+                                                <span class="table-primary-text">
+                                                    @item.Title
+                                                </span>
+
+                                                <span class="table-secondary-text">
+                                                    Publication ID: @item.Id
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <span class="type-badge">
+                                            @if (
+                                                item.Type ==
+                                                LMSystem.Models.PublicationType.Magazine
+                                            )
+                                            {
+                                                <i class="bi bi-journals"
+                                                   aria-hidden="true"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="bi bi-newspaper"
+                                                   aria-hidden="true"></i>
+                                            }
+
+                                            @item.Type
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <div class="table-cell-with-icon">
+                                            <i class="bi bi-building text-muted-custom"
+                                               aria-hidden="true"></i>
+
+                                            <span class="table-primary-text">
+                                                @item.Publisher
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="table-actions">
+                                            <a asp-action="Edit"
+                                               asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-soft-warning"
+                                               title="Edit @item.Title">
+                                                <i class="bi bi-pencil-square"
+                                                   aria-hidden="true"></i>
+
+                                                <span>
+                                                    Edit
+                                                </span>
+                                            </a>
+
+                                            <a asp-action="Delete"
+                                               asp-route-id="@item.Id"
+                                               class="btn btn-sm btn-soft-danger"
+                                               title="Delete @item.Title">
+                                                <i class="bi bi-trash3"
+                                                   aria-hidden="true"></i>
+
+                                                <span>
+                                                    Delete
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="table-card">
+                <div class="empty-state">
+                    <div class="empty-state-icon"
+                         aria-hidden="true">
+                        @if (
+                            currentType.Equals(
+                                "Magazine",
+                                StringComparison.OrdinalIgnoreCase
+                            )
+                        )
+                        {
+                            <i class="bi bi-journal-x"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-newspaper"></i>
+                        }
+                    </div>
+
+                    <h3>
+                        No publication records found
+                    </h3>
+
+                    <p>
+                        There are currently no @currentType records
+                        available in the library system.
+                    </p>
+
+                    <a asp-action="Create"
+                       class="btn btn-primary">
+                        <i class="bi bi-plus-lg"
+                           aria-hidden="true"></i>
+
+                        <span>
+                            Create New
+                        </span>
+                    </a>
+                </div>
+            </div>
+        }
+    </section>
+</div>

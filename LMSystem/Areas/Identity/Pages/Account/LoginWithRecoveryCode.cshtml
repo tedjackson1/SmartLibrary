@@ -1,0 +1,166 @@
+@page
+@model LoginWithRecoveryCodeModel
+
+@{
+    ViewData["Title"] = "Recovery code verification";
+}
+
+<div class="auth-page">
+    <div class="auth-container">
+        <section class="auth-visual"
+                 aria-label="Recovery code verification">
+            <div class="auth-visual-content">
+                <div class="auth-logo">
+                    <span class="auth-logo-icon"
+                          aria-hidden="true">
+                        <i class="bi bi-book-half"></i>
+                    </span>
+
+                    <span>
+                        <strong>
+                            LibSphere
+                        </strong>
+
+                        <small>
+                            Library Management System
+                        </small>
+                    </span>
+                </div>
+            </div>
+
+            <div class="auth-visual-copy">
+                <h2>
+                    Recover secure access to your account.
+                </h2>
+
+                <p>
+                    Use one of the recovery codes created when
+                    two-factor authentication was configured.
+                </p>
+            </div>
+
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <i class="bi bi-key"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Recovery-code authentication
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-shield-lock"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Secure account verification
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-person-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Restore account access
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-patch-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Identity-protected login
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-form-panel"
+                 aria-labelledby="recoveryCodeVerificationTitle">
+            <div class="auth-form-header">
+                <p class="page-eyebrow">
+                    Security Verification
+                </p>
+
+                <h1 id="recoveryCodeVerificationTitle">
+                    @ViewData["Title"]
+                </h1>
+
+                <p>
+                    Enter one of your available recovery codes to continue.
+                </p>
+            </div>
+
+            <div class="custom-alert custom-alert-warning"
+                 role="alert">
+                <span class="custom-alert-icon"
+                      aria-hidden="true">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </span>
+
+                <div class="custom-alert-content">
+                    <strong>
+                        Recovery-code login
+                    </strong>
+
+                    <p>
+                        You have requested to log in with a recovery code.
+                        This login will not be remembered until you provide
+                        an authenticator app code at log in or disable 2FA
+                        and log in again.
+                    </p>
+                </div>
+            </div>
+
+            <form method="post">
+                <div asp-validation-summary="ModelOnly"
+                     class="validation-summary-errors text-danger"
+                     role="alert"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.RecoveryCode"
+                           class="form-label"></label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-key input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Input.RecoveryCode"
+                               class="form-control"
+                               autocomplete="off"
+                               placeholder="RecoveryCode"
+                               autofocus />
+                    </div>
+
+                    <span asp-validation-for="Input.RecoveryCode"
+                          class="text-danger"></span>
+                </div>
+
+                <button type="submit"
+                        class="w-100 btn btn-lg btn-primary">
+                    <i class="bi bi-box-arrow-in-right"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Log in
+                    </span>
+                </button>
+            </form>
+
+            <div class="auth-form-footer">
+                <i class="bi bi-shield-check me-1"
+                   aria-hidden="true"></i>
+
+                Recovery-code authentication is handled securely through
+                ASP.NET Core Identity.
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

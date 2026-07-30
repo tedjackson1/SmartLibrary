@@ -1,0 +1,39 @@
+@page
+@model LockoutModel
+
+@{
+    ViewData["Title"] = "Locked out";
+}
+
+<section class="status-page"
+         aria-labelledby="accountLockoutTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon danger"
+             aria-hidden="true">
+            <i class="bi bi-person-lock"></i>
+        </div>
+
+        <div class="status-code">
+            Account Temporarily Restricted
+        </div>
+
+        <h1 id="accountLockoutTitle"
+            class="text-danger">
+            @ViewData["Title"]
+        </h1>
+
+        <p class="text-danger">
+            This account has been locked out, please try again later.
+        </p>
+
+        <div class="status-information-box"
+             role="status">
+            <i class="bi bi-clock-history"
+               aria-hidden="true"></i>
+
+            <span>
+                Please wait before attempting to sign in again.
+            </span>
+        </div>
+    </div>
+</section>

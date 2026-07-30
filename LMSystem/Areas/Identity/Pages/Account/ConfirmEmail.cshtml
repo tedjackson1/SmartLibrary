@@ -1,0 +1,29 @@
+@page
+@model ConfirmEmailModel
+
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<section class="status-page"
+         aria-labelledby="confirmEmailTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon primary"
+             aria-hidden="true">
+            <i class="bi bi-envelope-check"></i>
+        </div>
+
+        <div class="status-code">
+            Email Verification
+        </div>
+
+        <h1 id="confirmEmailTitle">
+            @ViewData["Title"]
+        </h1>
+
+        <div class="identity-status-container">
+            <partial name="_StatusMessage"
+                     model="Model.StatusMessage" />
+        </div>
+    </div>
+</section>

@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Support
+            </p>
+
+            <h2 class="page-title">
+                Contact Us
+            </h2>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="contactFormTitle">
+        <div class="contact-grid">
+            <article class="app-card">
+                <div class="app-card-header">
+                    <div>
+                        <h3 id="contactFormTitle"
+                            class="section-title">
+                            <i class="bi bi-chat-left-text me-2"
+                               aria-hidden="true"></i>
+
+                            Contact Us
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="app-card-body">
+                    <form action="#"
+                          method="post">
+                        <div class="mb-4">
+                            <label for="name"
+                                   class="form-label text-secondary small fw-bold">
+                                Full Name
+                            </label>
+
+                            <div class="input-icon-wrapper">
+                                <i class="bi bi-person input-icon"
+                                   aria-hidden="true"></i>
+
+                                <input type="text"
+                                       class="form-control"
+                                       id="name"
+                                       name="name"
+                                       placeholder="Enter your name"
+                                       required />
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email"
+                                   class="form-label text-secondary small fw-bold">
+                                Email Address
+                            </label>
+
+                            <div class="input-icon-wrapper">
+                                <i class="bi bi-envelope input-icon"
+                                   aria-hidden="true"></i>
+
+                                <input type="email"
+                                       class="form-control"
+                                       id="email"
+                                       name="email"
+                                       placeholder="Enter your email"
+                                       required />
+                            </div>
+                        </div>
+
+                        <div class="mb-0">
+                            <label for="message"
+                                   class="form-label text-secondary small fw-bold">
+                                Your Message
+                            </label>
+
+                            <textarea class="form-control"
+                                      id="message"
+                                      name="message"
+                                      rows="4"
+                                      placeholder="Type your message here..."
+                                      required></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                <i class="bi bi-send"
+                                   aria-hidden="true"></i>
+
+                                <span>
+                                    Submit Ticket
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </article>
+
+            <aside class="contact-info-card"
+                   aria-labelledby="supportDeskTitle">
+                <div class="detail-feature-icon"
+                     aria-hidden="true">
+                    <i class="bi bi-headset"></i>
+                </div>
+
+                <h3 id="supportDeskTitle">
+                    Support Desk
+                </h3>
+
+                <p>
+                    Have issues with broken links, missing inventory,
+                    or user accounts? Drop a message and our support
+                    admin panel team will reach out within 24 hours.
+                </p>
+
+                <div class="contact-info-list">
+                    <div class="contact-info-item">
+                        <span class="contact-info-icon"
+                              aria-hidden="true">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Email
+                            </strong>
+
+                            <span>
+                                support@librarymanagement.com
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <span class="contact-info-icon"
+                              aria-hidden="true">
+                            <i class="bi bi-clock"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Hours
+                            </strong>
+
+                            <span>
+                                Mon - Fri: 9:00 AM - 6:00 PM
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </section>
+</div>

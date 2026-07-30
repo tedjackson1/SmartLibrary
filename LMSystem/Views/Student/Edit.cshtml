@@ -1,0 +1,188 @@
+﻿@model LMSystem.Models.StudentModel
+
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Student Management
+            </p>
+
+            <h2 class="page-title">
+                Edit Student
+            </h2>
+
+            <p class="page-description">
+                Update the information stored for this student record.
+            </p>
+        </div>
+
+        <div class="page-header-actions">
+            <a asp-action="Index"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Students
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="editStudentFormTitle">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div>
+                            <h3 id="editStudentFormTitle"
+                                class="section-title">
+                                <i class="bi bi-person-gear me-2"
+                                   aria-hidden="true"></i>
+
+                                Student Information
+                            </h3>
+
+                            <p class="section-description">
+                                Edit the existing details and save the updated record.
+                            </p>
+                        </div>
+
+                        <span class="type-badge">
+                            <i class="bi bi-hash"
+                               aria-hidden="true"></i>
+
+                            Student ID: @Model.StudentId
+                        </span>
+                    </div>
+
+                    <div class="app-card-body">
+                        <form asp-action="Edit"
+                              method="post"
+                              onsubmit="return validateForm();">
+                            <input type="hidden"
+                                   asp-for="StudentId" />
+
+                            <div class="form-section">
+                                <div class="mb-4">
+                                    <label asp-for="StudentName"
+                                           class="form-label">
+                                        Student Name
+
+                                        <span class="required-mark"
+                                              aria-hidden="true">
+                                            *
+                                        </span>
+                                    </label>
+
+                                    <div class="input-icon-wrapper">
+                                        <i class="bi bi-person input-icon"
+                                           aria-hidden="true"></i>
+
+                                        <input asp-for="StudentName"
+                                               class="form-control"
+                                               placeholder="Enter the student's full name"
+                                               autocomplete="name"
+                                               autofocus />
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="Email"
+                                           class="form-label">
+                                        Email
+
+                                        <span class="required-mark"
+                                              aria-hidden="true">
+                                            *
+                                        </span>
+                                    </label>
+
+                                    <div class="input-icon-wrapper">
+                                        <i class="bi bi-envelope input-icon"
+                                           aria-hidden="true"></i>
+
+                                        <input asp-for="Email"
+                                               type="email"
+                                               class="form-control"
+                                               placeholder="Enter the student's email address"
+                                               autocomplete="email" />
+                                    </div>
+                                </div>
+
+                                <div class="mb-0">
+                                    <label asp-for="Phone"
+                                           class="form-label">
+                                        Phone
+
+                                        <span class="required-mark"
+                                              aria-hidden="true">
+                                            *
+                                        </span>
+                                    </label>
+
+                                    <div class="input-icon-wrapper">
+                                        <i class="bi bi-telephone input-icon"
+                                           aria-hidden="true"></i>
+
+                                        <input asp-for="Phone"
+                                               class="form-control"
+                                               placeholder="Enter the student's phone number"
+                                               autocomplete="tel" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit"
+                                        class="btn btn-primary">
+                                    <i class="bi bi-check-circle"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        Update
+                                    </span>
+                                </button>
+
+                                <a asp-action="Index"
+                                   class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        Cancel
+                                    </span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    function validateForm() {
+        const studentName =
+            document.querySelector('[name="StudentName"]').value.trim();
+
+        const email =
+            document.querySelector('[name="Email"]').value.trim();
+
+        const phone =
+            document.querySelector('[name="Phone"]').value.trim();
+
+        if (!studentName || !email || !phone) {
+            alert("All fields are required: Student Name, Email, and Phone.");
+            return false;
+        }
+
+        return true;
+    }
+</script>

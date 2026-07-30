@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Book Not Available";
+
+    var errorMessage =
+        TempData["ErrorMessage"] as string;
+}
+
+<section class="status-page"
+         aria-labelledby="bookNotAvailableTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon warning"
+             aria-hidden="true">
+            <i class="bi bi-bookmark-x"></i>
+        </div>
+
+        <div class="status-code">
+            Borrowing Unavailable
+        </div>
+
+        <h1 id="bookNotAvailableTitle">
+            Book Not Available
+        </h1>
+
+        <p>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                @errorMessage
+            }
+            else
+            {
+                <text>
+                    The book you are trying to borrow is currently not available.
+                </text>
+            }
+        </p>
+
+        <div class="status-page-actions">
+            <a asp-action="Index"
+               asp-controller="Books"
+               class="btn btn-primary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Book List
+                </span>
+            </a>
+        </div>
+    </div>
+</section>

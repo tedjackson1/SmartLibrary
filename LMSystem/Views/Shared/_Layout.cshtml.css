@@ -1,0 +1,268 @@
+﻿/*
+ * LibSphere Library Management System
+ * Shared layout-specific styles
+ *
+ * The main visual design is defined in:
+ * wwwroot/css/site.css
+ *
+ * This scoped stylesheet contains only structural refinements for
+ * Views/Shared/_Layout.cshtml. Keeping layout-specific rules here
+ * prevents the original ASP.NET template styles from conflicting
+ * with the redesigned application shell.
+ */
+
+
+/* =========================================================
+   APPLICATION SHELL SAFETY
+   ========================================================= */
+
+.app-shell {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    isolation: isolate;
+}
+
+.app-main {
+    min-width: 0;
+}
+
+.app-content {
+    width: 100%;
+}
+
+.content-container {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SIDEBAR STRUCTURE
+   ========================================================= */
+
+.app-sidebar {
+    overscroll-behavior: contain;
+}
+
+.sidebar-header,
+.sidebar-footer {
+    flex-shrink: 0;
+}
+
+.sidebar-content {
+    min-height: 0;
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+}
+
+.brand-link {
+    min-width: 0;
+}
+
+.brand-text,
+.sidebar-information-content {
+    min-width: 0;
+}
+
+.sidebar-link-label {
+    min-width: 0;
+}
+
+.sidebar-information-card {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   HEADER STRUCTURE
+   ========================================================= */
+
+.app-header {
+    flex-shrink: 0;
+}
+
+.app-header-left,
+.header-page-information {
+    min-width: 0;
+}
+
+.header-page-title {
+    max-width: min(52vw, 680px);
+}
+
+.app-header-actions {
+    flex-shrink: 0;
+}
+
+.header-login-content {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   QUICK NAVIGATION
+   ========================================================= */
+
+.quick-navigation-menu {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.quick-navigation-item {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   CONTENT AND MESSAGES
+   ========================================================= */
+
+.global-message {
+    width: 100%;
+}
+
+.global-message-content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   FOOTER STRUCTURE
+   ========================================================= */
+
+.app-footer {
+    flex-shrink: 0;
+}
+
+.footer-container {
+    min-width: 0;
+}
+
+.footer-brand,
+.footer-brand-text {
+    min-width: 0;
+}
+
+.footer-copyright {
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR STATE
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+    .app-sidebar {
+        will-change: transform;
+    }
+
+        .app-sidebar.is-open {
+            visibility: visible;
+        }
+
+    .sidebar-backdrop.is-visible {
+        visibility: visible;
+    }
+
+    .header-page-title {
+        max-width: min(52vw, 430px);
+    }
+}
+
+
+/* =========================================================
+   TABLET AND MOBILE HEADER
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+    .app-header-left {
+        flex: 1;
+    }
+
+    .header-page-information {
+        flex: 1;
+    }
+
+    .header-page-title {
+        max-width: calc(100vw - 235px);
+    }
+
+    .quick-navigation-menu {
+        max-width: calc(100vw - 30px);
+    }
+
+    .footer-container {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+    .header-page-title {
+        max-width: calc(100vw - 175px);
+    }
+
+    .quick-navigation-menu {
+        width: calc(100vw - 24px);
+        max-width: calc(100vw - 24px);
+    }
+
+    .quick-navigation-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .global-message {
+        align-items: flex-start;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE SCREENS
+   ========================================================= */
+
+@media (max-width: 390px) {
+    .header-page-title {
+        max-width: calc(100vw - 150px);
+    }
+
+    .quick-navigation-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   PRINT LAYOUT
+   ========================================================= */
+
+@media print {
+    .app-sidebar,
+    .app-header,
+    .app-footer,
+    .sidebar-backdrop,
+    .scroll-to-top-button,
+    .page-loader {
+        display: none !important;
+    }
+
+    .app-main {
+        min-height: auto;
+        margin-left: 0 !important;
+    }
+
+    .app-content {
+        min-height: auto;
+        padding: 0;
+    }
+
+    .content-container {
+        max-width: none;
+    }
+}

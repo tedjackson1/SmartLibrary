@@ -1,0 +1,225 @@
+﻿@model LMSystem.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Book Catalogue
+            </p>
+
+            <h2 class="page-title">
+                Book Details
+            </h2>
+
+            <p class="page-description">
+                View the complete catalogue information and current availability
+                of this book.
+            </p>
+        </div>
+
+        <div class="page-header-actions">
+            <a asp-action="Index"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Books
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="bookDetailsTitle">
+        <div class="details-grid">
+            <article class="app-card">
+                <div class="app-card-header">
+                    <div>
+                        <h3 id="bookDetailsTitle"
+                            class="section-title">
+                            <i class="bi bi-journal-bookmark me-2"
+                               aria-hidden="true"></i>
+
+                            @Model.Title
+                        </h3>
+
+                        <p class="section-description">
+                            Catalogue record number @Model.BookId
+                        </p>
+                    </div>
+
+                    @if (Model.IsAvailable)
+                    {
+                        <span class="status-badge status-available">
+                            Available
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="status-badge status-unavailable">
+                            Checked Out
+                        </span>
+                    }
+                </div>
+
+                <div class="app-card-body">
+                    <dl class="detail-list">
+                        <div class="detail-row">
+                            <dt class="detail-label">
+                                <i class="bi bi-book me-2"
+                                   aria-hidden="true"></i>
+
+                                Title
+                            </dt>
+
+                            <dd class="detail-value">
+                                @Model.Title
+                            </dd>
+                        </div>
+
+                        <div class="detail-row">
+                            <dt class="detail-label">
+                                <i class="bi bi-person me-2"
+                                   aria-hidden="true"></i>
+
+                                Author
+                            </dt>
+
+                            <dd class="detail-value">
+                                @Model.Author
+                            </dd>
+                        </div>
+
+                        <div class="detail-row">
+                            <dt class="detail-label">
+                                <i class="bi bi-upc-scan me-2"
+                                   aria-hidden="true"></i>
+
+                                ISBN
+                            </dt>
+
+                            <dd class="detail-value">
+                                @Model.ISBN
+                            </dd>
+                        </div>
+
+                        <div class="detail-row">
+                            <dt class="detail-label">
+                                <i class="bi bi-calendar3 me-2"
+                                   aria-hidden="true"></i>
+
+                                Published Date
+                            </dt>
+
+                            <dd class="detail-value">
+                                @Model.PublishedDate.ToString("yyyy-MM-dd")
+                            </dd>
+                        </div>
+
+                        <div class="detail-row">
+                            <dt class="detail-label">
+                                <i class="bi bi-check-circle me-2"
+                                   aria-hidden="true"></i>
+
+                                Availability
+                            </dt>
+
+                            <dd class="detail-value">
+                                @if (Model.IsAvailable)
+                                {
+                                    <span class="status-badge status-available">
+                                        Available
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="status-badge status-unavailable">
+                                        Checked Out
+                                    </span>
+                                }
+                            </dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="app-card-footer">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.BookId"
+                           class="btn btn-warning">
+                            <i class="bi bi-pencil-square"
+                               aria-hidden="true"></i>
+
+                            <span>
+                                Edit Book
+                            </span>
+                        </a>
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left-circle"
+                               aria-hidden="true"></i>
+
+                            <span>
+                                Back to List
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="detail-feature-card"
+                   aria-label="Book cover">
+                <div class="detail-feature-icon">
+                    <i class="bi bi-book-half"
+                       aria-hidden="true"></i>
+                </div>
+
+                <h3>
+                    Book Cover
+                </h3>
+
+                <p>
+                    Cover preview for the selected catalogue record.
+                </p>
+
+                <div class="book-details-cover">
+                    <img src="https://covers.openlibrary.org/b/ISBN/9780201616224-M.jpg"
+                         alt="@Model.Title"
+                         class="img-fluid rounded shadow"
+                         loading="lazy" />
+                </div>
+
+                <div class="mt-4">
+                    @if (Model.IsAvailable)
+                    {
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-check-circle-fill"
+                               aria-hidden="true"></i>
+
+                            <span>
+                                This book is currently available.
+                            </span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-clock-history"
+                               aria-hidden="true"></i>
+
+                            <span>
+                                This book is currently checked out.
+                            </span>
+                        </div>
+                    }
+                </div>
+            </aside>
+        </div>
+    </section>
+</div>

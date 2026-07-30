@@ -1,0 +1,101 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="app-card">
+    <div class="app-card-header">
+        <div>
+            <h3 class="section-title">
+                <i class="bi bi-person-circle me-2"
+                   aria-hidden="true"></i>
+
+                @ViewData["Title"]
+            </h3>
+
+            <p class="section-description">
+                Review your account username and update your phone number.
+            </p>
+        </div>
+
+        <span class="type-badge"
+              aria-label="Account profile">
+            <i class="bi bi-person-check"
+               aria-hidden="true"></i>
+
+            Account Profile
+        </span>
+    </div>
+
+    <div class="app-card-body">
+        <partial name="_StatusMessage"
+                 for="StatusMessage" />
+
+        <form id="profile-form"
+              method="post">
+            <div asp-validation-summary="ModelOnly"
+                 class="validation-summary-errors text-danger"
+                 role="alert"></div>
+
+            <div class="form-section">
+                <div class="mb-4">
+                    <label asp-for="Username"
+                           class="form-label"></label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-person input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Username"
+                               class="form-control"
+                               placeholder="Please choose your username."
+                               disabled />
+                    </div>
+
+                    <div class="form-text">
+                        Your username is connected to your account and
+                        cannot be changed from this form.
+                    </div>
+                </div>
+
+                <div>
+                    <label asp-for="Input.PhoneNumber"
+                           class="form-label"></label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-telephone input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Input.PhoneNumber"
+                               class="form-control"
+                               placeholder="Please enter your phone number."
+                               autocomplete="tel" />
+                    </div>
+
+                    <span asp-validation-for="Input.PhoneNumber"
+                          class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button id="update-profile-button"
+                        type="submit"
+                        class="btn btn-primary btn-lg">
+                    <i class="bi bi-check-circle"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Save
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

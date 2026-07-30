@@ -1,0 +1,89 @@
+@page
+@model RegisterConfirmationModel
+
+@{
+    ViewData["Title"] = "Register confirmation";
+}
+
+<section class="status-page"
+         aria-labelledby="registerConfirmationTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon success"
+             aria-hidden="true">
+            <i class="bi bi-person-check"></i>
+        </div>
+
+        <div class="status-code">
+            Account Registration
+        </div>
+
+        <h1 id="registerConfirmationTitle">
+            @ViewData["Title"]
+        </h1>
+
+        @if (Model.DisplayConfirmAccountLink)
+        {
+            <div class="custom-alert custom-alert-warning text-start"
+                 role="alert">
+                <span class="custom-alert-icon"
+                      aria-hidden="true">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </span>
+
+                <div class="custom-alert-content">
+                    <strong>
+                        Email sender not configured
+                    </strong>
+
+                    <p>
+                        This app does not currently have a real email sender
+                        registered. See
+                        <a href="https://aka.ms/aspaccountconf">
+                            these docs
+                        </a>
+                        for how to configure a real email sender.
+                    </p>
+                </div>
+            </div>
+
+            <div class="status-information-box"
+                 role="status">
+                <i class="bi bi-envelope-check"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Normally this would be emailed:
+                </span>
+            </div>
+
+            <div class="status-page-actions">
+                <a id="confirm-link"
+                   href="@Model.EmailConfirmationUrl"
+                   class="btn btn-primary btn-lg">
+                    <i class="bi bi-check-circle"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Click here to confirm your account
+                    </span>
+                </a>
+            </div>
+        }
+        else
+        {
+            <p>
+                Please check your email to confirm your account.
+            </p>
+
+            <div class="status-information-box"
+                 role="status">
+                <i class="bi bi-envelope"
+                   aria-hidden="true"></i>
+
+                <span>
+                    A confirmation message has been sent to your email.
+                </span>
+            </div>
+        }
+    </div>
+</section>

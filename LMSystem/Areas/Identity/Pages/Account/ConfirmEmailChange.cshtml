@@ -1,0 +1,33 @@
+@page
+@model ConfirmEmailChangeModel
+
+@{
+    ViewData["Title"] = "Confirm email change";
+}
+
+<section class="status-page"
+         aria-labelledby="confirmEmailChangeTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon primary"
+             aria-hidden="true">
+            <i class="bi bi-envelope-check"></i>
+        </div>
+
+        <div class="status-code">
+            Account Email Update
+        </div>
+
+        <h1 id="confirmEmailChangeTitle">
+            @ViewData["Title"]
+        </h1>
+
+        <p>
+            The result of your email-address change request is shown below.
+        </p>
+
+        <div class="identity-status-container">
+            <partial name="_StatusMessage"
+                     model="Model.StatusMessage" />
+        </div>
+    </div>
+</section>

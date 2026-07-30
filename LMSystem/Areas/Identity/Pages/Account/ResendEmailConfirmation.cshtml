@@ -1,0 +1,148 @@
+@page
+@model ResendEmailConfirmationModel
+
+@{
+    ViewData["Title"] = "Resend email confirmation";
+}
+
+<div class="auth-page">
+    <div class="auth-container">
+        <section class="auth-visual"
+                 aria-label="Email confirmation">
+            <div class="auth-visual-content">
+                <div class="auth-logo">
+                    <span class="auth-logo-icon"
+                          aria-hidden="true">
+                        <i class="bi bi-book-half"></i>
+                    </span>
+
+                    <span>
+                        <strong>
+                            LibSphere
+                        </strong>
+
+                        <small>
+                            Library Management System
+                        </small>
+                    </span>
+                </div>
+            </div>
+
+            <div class="auth-visual-copy">
+                <h2>
+                    Confirm your library account email.
+                </h2>
+
+                <p>
+                    Enter the email address associated with your account
+                    to receive another email-confirmation message.
+                </p>
+            </div>
+
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <i class="bi bi-envelope"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Enter your registered email
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-send"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Request another confirmation
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-envelope-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Verify your account email
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-shield-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Secure Identity verification
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-form-panel"
+                 aria-labelledby="resendConfirmationTitle">
+            <div class="auth-form-header">
+                <p class="page-eyebrow">
+                    Email Verification
+                </p>
+
+                <h1 id="resendConfirmationTitle">
+                    @ViewData["Title"]
+                </h1>
+
+                <p>
+                    Enter your email.
+                </p>
+            </div>
+
+            <form method="post">
+                <div asp-validation-summary="All"
+                     class="validation-summary-errors text-danger"
+                     role="alert"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.Email"
+                           class="form-label">
+                        Email Address
+                    </label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-envelope input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Input.Email"
+                               class="form-control"
+                               autocomplete="email"
+                               aria-required="true"
+                               placeholder="name@example.com"
+                               autofocus />
+                    </div>
+
+                    <span asp-validation-for="Input.Email"
+                          class="text-danger"></span>
+                </div>
+
+                <button type="submit"
+                        class="w-100 btn btn-lg btn-primary">
+                    <i class="bi bi-send"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Resend
+                    </span>
+                </button>
+            </form>
+
+            <div class="auth-form-footer">
+                <i class="bi bi-info-circle me-1"
+                   aria-hidden="true"></i>
+
+                A new verification email will be sent to the address
+                entered above.
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

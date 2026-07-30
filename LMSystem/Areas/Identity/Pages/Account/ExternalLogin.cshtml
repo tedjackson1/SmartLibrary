@@ -1,0 +1,165 @@
+@page
+@model ExternalLoginModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="auth-page">
+    <div class="auth-container">
+        <section class="auth-visual"
+                 aria-label="External account registration">
+            <div class="auth-visual-content">
+                <div class="auth-logo">
+                    <span class="auth-logo-icon"
+                          aria-hidden="true">
+                        <i class="bi bi-book-half"></i>
+                    </span>
+
+                    <span>
+                        <strong>
+                            LibSphere
+                        </strong>
+
+                        <small>
+                            Library Management System
+                        </small>
+                    </span>
+                </div>
+            </div>
+
+            <div class="auth-visual-copy">
+                <h2>
+                    Complete your library account registration.
+                </h2>
+
+                <p>
+                    Your external account has been authenticated successfully.
+                    Confirm your email address to finish creating your library
+                    account.
+                </p>
+            </div>
+
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <i class="bi bi-shield-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Secure external authentication
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-envelope-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Email account confirmation
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-person-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Simple account registration
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-box-arrow-in-right"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Continue directly after registration
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-form-panel"
+                 aria-labelledby="external-login-title">
+            <div class="auth-form-header">
+                <p class="page-eyebrow">
+                    External Account
+                </p>
+
+                <h1>
+                    @ViewData["Title"]
+                </h1>
+
+                <h2 id="external-login-title"
+                    class="section-title mt-3">
+                    Associate your @Model.ProviderDisplayName account
+                </h2>
+            </div>
+
+            <div id="external-login-description"
+                 class="custom-alert custom-alert-info text-info"
+                 role="status">
+                <span class="custom-alert-icon"
+                      aria-hidden="true">
+                    <i class="bi bi-info-circle-fill"></i>
+                </span>
+
+                <div class="custom-alert-content">
+                    <strong>
+                        Authentication successful
+                    </strong>
+
+                    <p>
+                        You've successfully authenticated with
+                        <strong>@Model.ProviderDisplayName</strong>.
+                        Please enter an email address for this site below
+                        and click the Register button to finish logging in.
+                    </p>
+                </div>
+            </div>
+
+            <form asp-page-handler="Confirmation"
+                  asp-route-returnUrl="@Model.ReturnUrl"
+                  method="post">
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger validation-summary-errors"
+                     role="alert"></div>
+
+                <div class="form-floating mb-4">
+                    <input asp-for="Input.Email"
+                           class="form-control"
+                           autocomplete="email"
+                           placeholder="Please enter your email." />
+
+                    <label asp-for="Input.Email"
+                           class="form-label"></label>
+
+                    <span asp-validation-for="Input.Email"
+                          class="text-danger"></span>
+                </div>
+
+                <button type="submit"
+                        class="w-100 btn btn-lg btn-primary">
+                    <i class="bi bi-person-check"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Register
+                    </span>
+                </button>
+            </form>
+
+            <div class="auth-form-footer">
+                <i class="bi bi-shield-lock me-1"
+                   aria-hidden="true"></i>
+
+                Your external account information is handled through
+                ASP.NET Core Identity.
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

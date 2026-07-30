@@ -1,0 +1,646 @@
+﻿@{
+    string pageTitle = ViewData["Title"]?.ToString() ?? "Library Management System";
+
+    string currentController =
+        ViewContext.RouteData.Values["controller"]?.ToString() ?? string.Empty;
+
+    string currentAction =
+        ViewContext.RouteData.Values["action"]?.ToString() ?? string.Empty;
+
+    string currentPublicationType =
+        Context.Request.Query["type"].ToString();
+
+    string GetActiveClass(string controller, string? action = null)
+    {
+        bool controllerMatches =
+            currentController.Equals(
+                controller,
+                StringComparison.OrdinalIgnoreCase
+            );
+
+        bool actionMatches =
+            string.IsNullOrWhiteSpace(action) ||
+            currentAction.Equals(
+                action,
+                StringComparison.OrdinalIgnoreCase
+            );
+
+        return controllerMatches && actionMatches
+            ? "active"
+            : string.Empty;
+    }
+
+    string GetPublicationActiveClass(string publicationType)
+    {
+        bool controllerMatches =
+            currentController.Equals(
+                "Publications",
+                StringComparison.OrdinalIgnoreCase
+            );
+
+        bool typeMatches =
+            currentPublicationType.Equals(
+                publicationType,
+                StringComparison.OrdinalIgnoreCase
+            );
+
+        return controllerMatches && typeMatches
+            ? "active"
+            : string.Empty;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <meta name="description"
+          content="Library Management System for managing books, students, librarians, borrowings and publications." />
+
+    <title>
+        @pageTitle - Library Management System
+    </title>
+
+    <link rel="icon"
+          type="image/x-icon"
+          href="~/favicon.ico" />
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet" />
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/LMSystem.styles.css"
+          asp-append-version="true" />
+
+    @await RenderSectionAsync(
+        "Styles",
+        required: false
+    )
+</head>
+
+<body>
+    <div id="pageLoader"
+         class="page-loader"
+         aria-hidden="true">
+        <div class="page-loader-content">
+            <div class="page-loader-logo">
+                <i class="bi bi-book-half"></i>
+            </div>
+
+            <div class="spinner-border spinner-border-sm"
+                 role="status">
+                <span class="visually-hidden">
+                    Loading...
+                </span>
+            </div>
+
+            <span>
+                Loading Library System...
+            </span>
+        </div>
+    </div>
+
+    <div id="sidebarBackdrop"
+         class="sidebar-backdrop"></div>
+
+    <div class="app-shell">
+        <aside id="appSidebar"
+               class="app-sidebar"
+               aria-label="Main navigation">
+            <div class="sidebar-header">
+                <a asp-controller="Home"
+                   asp-action="Index"
+                   class="brand-link">
+                    <span class="brand-icon">
+                        <i class="bi bi-book-half"></i>
+                    </span>
+
+                    <span class="brand-text">
+                        <span class="brand-title">
+                            Lib<span>Sphere</span>
+                        </span>
+
+                        <span class="brand-subtitle">
+                            Library Management
+                        </span>
+                    </span>
+                </a>
+
+                <button id="sidebarCloseButton"
+                        type="button"
+                        class="sidebar-close-button"
+                        aria-label="Close navigation">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="sidebar-section">
+                    <p class="sidebar-section-title">
+                        Overview
+                    </p>
+
+                    <nav class="sidebar-nav">
+                        <a asp-controller="Home"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("Home", "Index")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-house-door"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Home
+                            </span>
+                        </a>
+
+                        <a asp-controller="Dashboard"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("Dashboard")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-grid-1x2"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Dashboard
+                            </span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-section-title">
+                        Library Records
+                    </p>
+
+                    <nav class="sidebar-nav">
+                        <a asp-controller="Books"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("Books")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-journal-bookmark"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Books
+                            </span>
+                        </a>
+
+                        <a asp-controller="Student"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("Student")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-mortarboard"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Students
+                            </span>
+                        </a>
+
+                        <a asp-controller="Librarian"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("Librarian")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-person-workspace"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Librarians
+                            </span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-section-title">
+                        Publications
+                    </p>
+
+                    <nav class="sidebar-nav">
+                        <a asp-controller="Publications"
+                           asp-action="Index"
+                           asp-route-type="Magazine"
+                           class="sidebar-link @GetPublicationActiveClass("Magazine")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-journals"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Magazines
+                            </span>
+                        </a>
+
+                        <a asp-controller="Publications"
+                           asp-action="Index"
+                           asp-route-type="Newspaper"
+                           class="sidebar-link @GetPublicationActiveClass("Newspaper")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-newspaper"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Newspapers
+                            </span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-section">
+                    <p class="sidebar-section-title">
+                        Information
+                    </p>
+
+                    <nav class="sidebar-nav">
+                        <a asp-controller="AboutUs"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("AboutUs")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-info-circle"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                About Us
+                            </span>
+                        </a>
+
+                        <a asp-controller="ContactUs"
+                           asp-action="Index"
+                           class="sidebar-link @GetActiveClass("ContactUs")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-headset"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Contact Us
+                            </span>
+                        </a>
+
+                        <a asp-controller="Home"
+                           asp-action="Privacy"
+                           class="sidebar-link @GetActiveClass("Home", "Privacy")">
+                            <span class="sidebar-link-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </span>
+
+                            <span class="sidebar-link-label">
+                                Privacy
+                            </span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-information-card">
+                    <span class="sidebar-information-icon">
+                        <i class="bi bi-stars"></i>
+                    </span>
+
+                    <div class="sidebar-information-content">
+                        <h6>
+                            Smart Library
+                        </h6>
+
+                        <p>
+                            Manage books, users and publications from one
+                            organised system.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a asp-controller="Login"
+                   asp-action="Index"
+                   class="sidebar-login-link @GetActiveClass("Login")">
+                    <span class="sidebar-login-icon">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                    </span>
+
+                    <span>
+                        Login
+                    </span>
+
+                    <i class="bi bi-chevron-right ms-auto"></i>
+                </a>
+            </div>
+        </aside>
+
+        <div class="app-main">
+            <header class="app-header">
+                <div class="app-header-left">
+                    <button id="sidebarToggleButton"
+                            type="button"
+                            class="header-icon-button sidebar-toggle-button"
+                            aria-label="Open navigation">
+                        <i class="bi bi-list"></i>
+                    </button>
+
+                    <div class="header-page-information">
+                        <p class="header-eyebrow">
+                            Library Management System
+                        </p>
+
+                        <h1 class="header-page-title">
+                            @pageTitle
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="app-header-actions">
+                    <button id="themeToggleButton"
+                            type="button"
+                            class="header-icon-button"
+                            aria-label="Change colour theme"
+                            title="Change colour theme">
+                        <i id="themeToggleIcon"
+                           class="bi bi-moon-stars"></i>
+                    </button>
+
+                    <div class="dropdown">
+                        <button type="button"
+                                class="header-icon-button position-relative"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                aria-label="Open quick navigation"
+                                title="Quick navigation">
+                            <i class="bi bi-grid"></i>
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-end quick-navigation-menu">
+                            <div class="quick-navigation-header">
+                                <div>
+                                    <h6>
+                                        Quick Navigation
+                                    </h6>
+
+                                    <p>
+                                        Open frequently used pages
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="quick-navigation-grid">
+                                <a asp-controller="Books"
+                                   asp-action="Index"
+                                   class="quick-navigation-item">
+                                    <span class="quick-navigation-icon">
+                                        <i class="bi bi-book"></i>
+                                    </span>
+
+                                    <span>
+                                        Books
+                                    </span>
+                                </a>
+
+                                <a asp-controller="Student"
+                                   asp-action="Index"
+                                   class="quick-navigation-item">
+                                    <span class="quick-navigation-icon">
+                                        <i class="bi bi-mortarboard"></i>
+                                    </span>
+
+                                    <span>
+                                        Students
+                                    </span>
+                                </a>
+
+                                <a asp-controller="Librarian"
+                                   asp-action="Index"
+                                   class="quick-navigation-item">
+                                    <span class="quick-navigation-icon">
+                                        <i class="bi bi-person-workspace"></i>
+                                    </span>
+
+                                    <span>
+                                        Librarians
+                                    </span>
+                                </a>
+
+                                <a asp-controller="Dashboard"
+                                   asp-action="Index"
+                                   class="quick-navigation-item">
+                                    <span class="quick-navigation-icon">
+                                        <i class="bi bi-bar-chart"></i>
+                                    </span>
+
+                                    <span>
+                                        Dashboard
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a asp-controller="Login"
+                       asp-action="Index"
+                       class="header-login-button">
+                        <span class="header-login-icon">
+                            <i class="bi bi-person"></i>
+                        </span>
+
+                        <span class="header-login-content">
+                            <strong>
+                                Library Account
+                            </strong>
+
+                            <small>
+                                Login to continue
+                            </small>
+                        </span>
+
+                        <i class="bi bi-chevron-down"></i>
+                    </a>
+                </div>
+            </header>
+
+            <main class="app-content">
+                <div class="content-container">
+                    @if (TempData["message"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show global-message"
+                             role="alert">
+                            <span class="global-message-icon">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </span>
+
+                            <div class="global-message-content">
+                                <strong>
+                                    Success
+                                </strong>
+
+                                <p>
+                                    @TempData["message"]
+                                </p>
+                            </div>
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show global-message"
+                             role="alert">
+                            <span class="global-message-icon">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </span>
+
+                            <div class="global-message-content">
+                                <strong>
+                                    Success
+                                </strong>
+
+                                <p>
+                                    @TempData["SuccessMessage"]
+                                </p>
+                            </div>
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["ErrorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade show global-message"
+                             role="alert">
+                            <span class="global-message-icon">
+                                <i class="bi bi-exclamation-octagon-fill"></i>
+                            </span>
+
+                            <div class="global-message-content">
+                                <strong>
+                                    Error
+                                </strong>
+
+                                <p>
+                                    @TempData["ErrorMessage"]
+                                </p>
+                            </div>
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @if (TempData["WarningMessage"] != null)
+                    {
+                        <div class="alert alert-warning alert-dismissible fade show global-message"
+                             role="alert">
+                            <span class="global-message-icon">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                            </span>
+
+                            <div class="global-message-content">
+                                <strong>
+                                    Attention
+                                </strong>
+
+                                <p>
+                                    @TempData["WarningMessage"]
+                                </p>
+                            </div>
+
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @RenderBody()
+                </div>
+            </main>
+
+            <footer class="app-footer">
+                <div class="footer-container">
+                    <div class="footer-brand">
+                        <span class="footer-brand-icon">
+                            <i class="bi bi-book-half"></i>
+                        </span>
+
+                        <span class="footer-brand-text">
+                            <strong>
+                                LibSphere
+                            </strong>
+
+                            <small>
+                                Library Management System
+                            </small>
+                        </span>
+                    </div>
+
+                    <p class="footer-copyright">
+                        &copy; @DateTime.Now.Year LibSphere.
+                        All rights reserved.
+                    </p>
+
+                    <nav class="footer-links">
+                        <a asp-controller="AboutUs"
+                           asp-action="Index">
+                            About
+                        </a>
+
+                        <a asp-controller="ContactUs"
+                           asp-action="Index">
+                            Contact
+                        </a>
+
+                        <a asp-controller="Home"
+                           asp-action="Privacy">
+                            Privacy
+                        </a>
+                    </nav>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <button id="scrollToTopButton"
+            type="button"
+            class="scroll-to-top-button"
+            aria-label="Scroll to the top"
+            title="Scroll to the top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true"></script>
+
+    @await RenderSectionAsync(
+        "Scripts",
+        required: false
+    )
+</body>
+</html> 

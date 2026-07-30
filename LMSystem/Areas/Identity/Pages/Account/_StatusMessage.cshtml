@@ -1,0 +1,42 @@
+@model string
+
+@if (!String.IsNullOrEmpty(Model))
+{
+    var statusMessageClass =
+        Model.StartsWith("Error")
+            ? "danger"
+            : "success";
+
+    var isError =
+        statusMessageClass == "danger";
+
+    <div class="alert alert-@statusMessageClass alert-dismissible fade show global-message"
+         role="alert">
+        <span class="global-message-icon"
+              aria-hidden="true">
+            @if (isError)
+            {
+                <i class="bi bi-exclamation-octagon-fill"></i>
+            }
+            else
+            {
+                <i class="bi bi-check-circle-fill"></i>
+            }
+        </span>
+
+        <div class="global-message-content">
+            <strong>
+                @(isError ? "Error" : "Success")
+            </strong>
+
+            <p>
+                @Model
+            </p>
+        </div>
+
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"></button>
+    </div>
+}

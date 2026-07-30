@@ -1,0 +1,243 @@
+@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="auth-page">
+    <div class="auth-container">
+        <section class="auth-visual"
+                 aria-label="Account registration">
+            <div class="auth-visual-content">
+                <div class="auth-logo">
+                    <span class="auth-logo-icon"
+                          aria-hidden="true">
+                        <i class="bi bi-book-half"></i>
+                    </span>
+
+                    <span>
+                        <strong>
+                            LibSphere
+                        </strong>
+
+                        <small>
+                            Library Management System
+                        </small>
+                    </span>
+                </div>
+            </div>
+
+            <div class="auth-visual-copy">
+                <h2>
+                    Create a new account.
+                </h2>
+
+                <p>
+                    Register using your email address and a secure password.
+                </p>
+            </div>
+
+            <div class="auth-features">
+                <div class="auth-feature">
+                    <i class="bi bi-envelope"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Email registration
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-shield-lock"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Password-protected account
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-person-plus"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        New account creation
+                    </span>
+                </div>
+
+                <div class="auth-feature">
+                    <i class="bi bi-box-arrow-in-up-right"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        External registration support
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section class="auth-form-panel"
+                 aria-labelledby="registerPageTitle">
+            <div class="auth-form-header">
+                <p class="page-eyebrow">
+                    Account Registration
+                </p>
+
+                <h1 id="registerPageTitle">
+                    @ViewData["Title"]
+                </h1>
+
+                <p>
+                    Create a new account.
+                </p>
+            </div>
+
+            <form id="registerForm"
+                  asp-route-returnUrl="@Model.ReturnUrl"
+                  method="post">
+                <div asp-validation-summary="ModelOnly"
+                     class="validation-summary-errors text-danger"
+                     role="alert"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.Email"
+                           class="form-label">
+                        Email
+                    </label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-envelope input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Input.Email"
+                               class="form-control"
+                               autocomplete="username"
+                               aria-required="true"
+                               placeholder="name@example.com"
+                               autofocus />
+                    </div>
+
+                    <span asp-validation-for="Input.Email"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.Password"
+                           class="form-label">
+                        Password
+                    </label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-lock input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Input.Password"
+                               class="form-control"
+                               autocomplete="new-password"
+                               aria-required="true"
+                               placeholder="Password" />
+                    </div>
+
+                    <span asp-validation-for="Input.Password"
+                          class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.ConfirmPassword"
+                           class="form-label">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-icon-wrapper">
+                        <i class="bi bi-lock-fill input-icon"
+                           aria-hidden="true"></i>
+
+                        <input asp-for="Input.ConfirmPassword"
+                               class="form-control"
+                               autocomplete="new-password"
+                               aria-required="true"
+                               placeholder="Confirm password" />
+                    </div>
+
+                    <span asp-validation-for="Input.ConfirmPassword"
+                          class="text-danger"></span>
+                </div>
+
+                <button id="registerSubmit"
+                        type="submit"
+                        class="w-100 btn btn-lg btn-primary">
+                    <i class="bi bi-person-plus"
+                       aria-hidden="true"></i>
+
+                    <span>
+                        Register
+                    </span>
+                </button>
+            </form>
+
+            <div class="auth-form-footer">
+                <h2 class="section-title mb-3">
+                    Use another service to register.
+                </h2>
+
+                @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div class="custom-alert custom-alert-info text-start"
+                         role="status">
+                        <span class="custom-alert-icon"
+                              aria-hidden="true">
+                            <i class="bi bi-info-circle-fill"></i>
+                        </span>
+
+                        <div class="custom-alert-content">
+                            <strong>
+                                External services unavailable
+                            </strong>
+
+                            <p>
+                                There are no external authentication services
+                                configured. See this
+                                <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                    article about setting up this ASP.NET
+                                    application to support logging in via
+                                    external services
+                                </a>.
+                            </p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account"
+                          asp-page="./ExternalLogin"
+                          asp-route-returnUrl="@Model.ReturnUrl"
+                          method="post"
+                          class="form-horizontal">
+                        <div class="d-grid gap-2">
+                            @foreach (var provider in Model.ExternalLogins!)
+                            {
+                                <button type="submit"
+                                        class="btn btn-outline-secondary"
+                                        name="provider"
+                                        value="@provider.Name"
+                                        title="Log in using your @provider.DisplayName account">
+                                    <i class="bi bi-box-arrow-in-up-right"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        @provider.DisplayName
+                                    </span>
+                                </button>
+                            }
+                        </div>
+                    </form>
+                }
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

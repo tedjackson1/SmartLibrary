@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Page Not Found";
+
+    var errorMessage =
+        TempData["ErrorMessage"] as string
+        ?? ViewBag.ErrorMessage as string;
+}
+
+<section class="status-page"
+         aria-labelledby="notFoundPageTitle">
+    <div class="status-page-card">
+        <div class="status-page-icon warning"
+             aria-hidden="true">
+            <i class="bi bi-search"></i>
+        </div>
+
+        <div class="status-code">
+            Resource Not Found
+        </div>
+
+        <h1 id="notFoundPageTitle">
+            We couldn’t find that resource
+        </h1>
+
+        <p>
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                @errorMessage
+            }
+            else
+            {
+                <text>
+                    The page you are looking for does not exist.
+                </text>
+            }
+        </p>
+
+        <div class="status-page-actions">
+            <a asp-controller="Books"
+               asp-action="Index"
+               class="btn btn-primary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Book List
+                </span>
+            </a>
+        </div>
+    </div>
+</section>

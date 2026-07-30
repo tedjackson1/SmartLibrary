@@ -1,0 +1,151 @@
+﻿@model LMSystem.Models.LibrarianModel
+
+@{
+    ViewData["Title"] = "Edit Librarian";
+}
+
+<div class="page-container">
+    <header class="page-header">
+        <div class="page-header-content">
+            <p class="page-eyebrow">
+                Librarian Management
+            </p>
+
+            <h2 class="page-title">
+                Edit Librarian
+            </h2>
+
+            <p class="page-description">
+                Update the information stored for this librarian record.
+            </p>
+        </div>
+
+        <div class="page-header-actions">
+            <a asp-action="Index"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"
+                   aria-hidden="true"></i>
+
+                <span>
+                    Back to Librarians
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <section class="page-section"
+             aria-labelledby="editLibrarianFormTitle">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-9 col-xl-7">
+                <div class="app-card">
+                    <div class="app-card-header">
+                        <div>
+                            <h3 id="editLibrarianFormTitle"
+                                class="section-title">
+                                <i class="bi bi-person-gear me-2"
+                                   aria-hidden="true"></i>
+
+                                Librarian Information
+                            </h3>
+
+                            <p class="section-description">
+                                Edit the existing details and save the updated record.
+                            </p>
+                        </div>
+
+                        <span class="type-badge">
+                            <i class="bi bi-hash"
+                               aria-hidden="true"></i>
+
+                            Librarian ID: @Model.LibrarianId
+                        </span>
+                    </div>
+
+                    <div class="app-card-body">
+                        <form asp-action="Edit"
+                              method="post">
+                            <input type="hidden"
+                                   asp-for="LibrarianId" />
+
+                            <div class="form-section">
+                                <div class="mb-4">
+                                    <label asp-for="Name"
+                                           class="form-label">
+                                        Name
+                                    </label>
+
+                                    <div class="input-icon-wrapper">
+                                        <i class="bi bi-person input-icon"
+                                           aria-hidden="true"></i>
+
+                                        <input asp-for="Name"
+                                               class="form-control"
+                                               placeholder="Enter the librarian's name"
+                                               autocomplete="name"
+                                               autofocus />
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="Age"
+                                           class="form-label">
+                                        Age
+                                    </label>
+
+                                    <div class="input-icon-wrapper">
+                                        <i class="bi bi-calendar-person input-icon"
+                                           aria-hidden="true"></i>
+
+                                        <input asp-for="Age"
+                                               type="number"
+                                               class="form-control"
+                                               placeholder="Enter the librarian's age" />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label asp-for="Phone"
+                                           class="form-label">
+                                        Phone
+                                    </label>
+
+                                    <div class="input-icon-wrapper">
+                                        <i class="bi bi-telephone input-icon"
+                                           aria-hidden="true"></i>
+
+                                        <input asp-for="Phone"
+                                               class="form-control"
+                                               placeholder="Enter the librarian's phone number"
+                                               autocomplete="tel" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit"
+                                        class="btn btn-primary">
+                                    <i class="bi bi-check-circle"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        Update
+                                    </span>
+                                </button>
+
+                                <a asp-action="Index"
+                                   class="btn btn-outline-secondary">
+                                    <i class="bi bi-x-circle"
+                                       aria-hidden="true"></i>
+
+                                    <span>
+                                        Cancel
+                                    </span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
